@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет студента</title>
+    <link href="./styles/reset.css" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/lk.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Reddit+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="bg">
+        <div class="bg-1"></div>
+        <div class="bg-2"></div>
+    </div>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <div class="logo-img">
+                    ПСБ
+                </div>
+                <span>Студент</span>
+            </div>
+            <div class="settings"><button type="button" id="logoutBtn">Выйти</button></div>
+        </div>
+        <div class="main">
+            <div class="rightbar">
+                <ul>
+                    <li><a href="#" class="active" tabindex="0">Мои курсы</a></li>
+                    <li><a href="#" tabindex="0">Статистика</a></li>
+                </ul>
+            </div>
+            <div class="content">
+                <div class="courses" id="courses">
+                    <div class="title">
+                        <span>Личный кабинет студента</span>
+                    </div>
+                    <div style="padding: 40px; text-align: center;">
+                        <div style="background: white; padding: 60px 40px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); max-width: 600px; margin: 0 auto;">
+                            <h2 style="color: #333; margin-bottom: 20px; font-size: 28px;">Функционал студента в разработке</h2>
+                            <p style="color: #666; font-size: 16px; line-height: 1.6;">
+                                Пока доступен только функционал преподавателя.<br>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./scripts/api.js"></script>
+    <script>
+        if (!api.isAuthenticated()) {
+            window.location.href = 'form.html';
+        }
+
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            api.removeToken();
+            window.location.href = 'form.html';
+        });
+    </script>
+</body>
+</html>

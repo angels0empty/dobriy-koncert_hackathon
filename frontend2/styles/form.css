@@ -1,0 +1,110 @@
+body{
+    background: linear-gradient(to top, rgb(24, 84, 215), rgb(55, 113, 238),  rgb(248, 175, 38));
+    height: 100dvh;
+    width: 100dvw;
+    display: inline-block;
+    overflow-x: hidden;
+}
+.container{
+    min-height: 100%;
+    min-width: 100%;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.form{
+    margin: 0px auto;
+    background-color: #fff;
+    max-width: 400px;
+    min-height: 600px;
+    height: 100%;
+    width: 100%;
+    padding: 0px 40px 30px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-evenly;
+    border-radius: 1em;
+    box-shadow: 0px 0px 10px #ffffff;
+}
+.form *{
+
+}
+.form:last-child{
+    margin-bottom: 0px;
+}
+.form-img{
+    margin-bottom: 0px;
+    
+}
+.form-list{
+    margin-bottom: 30px;
+}
+.list-item{
+    margin-bottom: 20px;
+}
+.list-item span{
+    display: block;
+    text-transform: uppercase;
+    font-family: "Roboto Condensed", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    color: #000;
+    margin-bottom: 10px;
+    padding-left: 5px;
+
+}
+.list-item input{
+    border: 1.5px solid rgb(24, 84, 215);
+    border-radius: 2em;
+    padding: 15px;
+    width: 100%;
+    background-color: #e7efff;
+    font-family: "Roboto Condensed", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+.list-item input:hover{
+    transition-duration: 0.2s;
+    background-color: #eef4ff;
+    box-shadow: 0px 0px 1px #000;
+}
+.form-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.form-buttons button{
+    border-radius: 2em;
+    padding: 15px 50px;
+    text-transform: uppercase;
+    font-family: "Roboto Condensed", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    letter-spacing: 1px;
+    transition-duration: 0.4s;
+    transition-timing-function: ease-in-out;
+}   
+.get{
+    background-color: rgb(24, 84, 215);
+    border: 1px solid rgb(24, 84, 215);
+    color: #fff;
+}
+.get:hover{
+    color: rgb(24, 84, 215);
+    background-color: #fff;
+    box-shadow: inset 0px 0px 2px rgb(24, 84, 215);
+}
+.del{
+    border: 1px solid #000;
+    color: #000;
+    background-color: #fff;
+}
+.del:hover{
+    color: #fff;
+    background-color: rgb(248, 175, 38);
+    border: 1px solid rgb(248, 175, 38);
+}
+.form-buttons a:hover:visited{
+    color: #0e6617;
+}

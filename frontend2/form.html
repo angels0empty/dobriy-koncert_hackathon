@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизация</title>
+    <link href="./styles/reset.css" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/form.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="form">
+            <div class="form-img">
+                <img src="./img/psb.png" alt="ПСБ">
+            </div>
+            <div class="form-list">
+                <div class="list-item" id="fullname-field" style="display: none;">
+                    <span>Полное имя</span>
+                    <input type="text" id="fullname">
+                </div>
+                <div class="list-item">
+                    <span>Email</span>
+                    <input type="text" id="login">
+                </div>
+                <div class="list-item">
+                    <span>Пароль</span>
+                    <input type="password" id="password">
+                </div>
+                <div class="error-message" id="error-message" style="color: red; display: none; margin-top: 10px;"></div>
+            </div>
+            <div class="form-buttons">
+                <button class="get" type="submit" id="loginBtn">Войти</button>
+                <button class="del" type="reset" value="Reset the form" id="b">Сброс</button>
+            </div>
+            <div style="text-align: center; margin-top: 15px;">
+                <a href="#" id="toggleMode" style="color: #007bff; text-decoration: none; font-size: 14px;">Нет аккаунта? Зарегистрироваться</a>
+            </div>
+        </div>
+    </div>
+    <script src="./scripts/api.js"></script>
+    <script src="./scripts/form.js"></script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Курс</title>
+    <link href="./styles/reset.css" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/lk.css">
+    <link rel="stylesheet" href="./styles/course.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Reddit+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="bg">
+        <div class="bg-1"></div>
+        <div class="bg-2"></div>
+    </div>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <div class="logo-img">ПСБ</div>
+                <span id="courseTitle">Курс</span>
+            </div>
+            <div class="settings">
+                <button type="button" onclick="window.location.href='lkp.html'">Назад</button>
+                <button type="button" id="logoutBtn">Выйти</button>
+            </div>
+        </div>
+        <div class="main">
+            <div class="rightbar">
+                <ul>
+                    <li><a href="#" class="tab-link active" data-tab="materials">Материалы</a></li>
+                    <li><a href="#" class="tab-link" data-tab="assignments">Задания</a></li>
+                    <li><a href="#" class="tab-link" data-tab="students">Студенты</a></li>
+                    <li><a href="#" class="tab-link" data-tab="stats">Статистика</a></li>
+                </ul>
+            </div>
+            <div class="content">
+                <!-- Материалы -->
+                <div class="tab-content active" id="materials">
+                    <div class="title">
+                        <span>Материалы курса</span>
+                        <button onclick="showAddMaterial()">+ Добавить материал</button>
+                    </div>
+                    <div id="materials-list"></div>
+                </div>
+
+                <!-- Задания -->
+                <div class="tab-content" id="assignments">
+                    <div class="title">
+                        <span>Задания курса</span>
+                        <button onclick="showAddAssignment()">+ Добавить задание</button>
+                    </div>
+                    <div id="assignments-list"></div>
+                </div>
+
+                <!-- Студенты -->
+                <div class="tab-content" id="students">
+                    <div class="title">
+                        <span>Студенты на курсе</span>
+                        <button onclick="showAddStudent()">+ Добавить студента</button>
+                    </div>
+                    <div id="students-list"></div>
+                </div>
+
+                <!-- Статистика -->
+                <div class="tab-content" id="stats">
+                    <div class="title">
+                        <span>Статистика по курсу</span>
+                    </div>
+                    <div id="stats-content"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно для добавления материала -->
+    <div id="materialModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('materialModal')">&times;</span>
+            <h2 id="materialModalTitle">Добавить материал</h2>
+            <form id="materialForm">
+                <input type="text" id="materialTitle" placeholder="Название" required>
+                <textarea id="materialContent" placeholder="Содержание" rows="6"></textarea>
+                <input type="text" id="materialFileUrl" placeholder="URL файла (опционально)">
+                <input type="number" id="materialOrder" placeholder="Порядок" value="1">
+                <button type="submit">Сохранить</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Модальное окно для добавления задания -->
+    <div id="assignmentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('assignmentModal')">&times;</span>
+            <h2 id="assignmentModalTitle">Добавить задание</h2>
+            <form id="assignmentForm">
+                <input type="text" id="assignmentTitle" placeholder="Название" required>
+                <textarea id="assignmentDescription" placeholder="Описание" rows="6"></textarea>
+                <input type="number" id="assignmentMaxScore" placeholder="Максимальный балл" required value="100">
+                <input type="datetime-local" id="assignmentDeadline" placeholder="Дедлайн">
+                <button type="submit">Сохранить</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Модальное окно для проверки работ -->
+    <div id="submissionsModal" class="modal">
+        <div class="modal-content large">
+            <span class="close" onclick="closeModal('submissionsModal')">&times;</span>
+            <h2>Проверка работ</h2>
+            <div id="submissions-list"></div>
+        </div>
+    </div>
+
+    <!-- Модальное окно для добавления студента -->
+    <div id="studentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('studentModal')">&times;</span>
+            <h2>Добавить студента на курс</h2>
+            <form id="studentForm">
+                <input type="email" id="studentEmail" placeholder="Email студента" required>
+                <button type="submit">Добавить</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="./scripts/api.js"></script>
+    <script src="./scripts/course.js"></script>
+</body>
+</html>

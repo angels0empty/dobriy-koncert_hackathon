@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет</title>
+    <link href="./styles/reset.css" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/lk.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Reddit+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+</head>
+<body>
+        <div class="bg">
+            <div class="bg-1"></div>
+            <div class="bg-2"></div>
+        </div>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <div class="logo-img">
+                    ПСБ
+                </div>
+                <span>Препод</span>
+            </div>
+            <div class="settings"><button type="button" id="logoutBtn">Выйти</button></div>
+        </div>
+        <div class="main">
+            <div class="rightbar">
+                <ul>
+                    <li><a href="#" class="c" tabindex="0"><span>+</span>Создание курса</a></li>
+                    <li><a href="#" class="s" tabindex="0">Статистика студентов </a></li>
+                    <li><a href="#" class="ch" tabindex="0">Мои курсы</a></li>
+                </ul>
+            </div>
+            <div class="content">
+                <div class="courses" id="courses">
+                    <div class="title">
+                        <span>Курсы</span>
+                    </div>
+                    <div id="courses-list">
+                        <!-- Курсы будут загружены через JS -->
+                    </div>
+                </div>
+                <div class="stat" id="stat" style="display: none;">
+                    <div class="title">
+                        <span>Статистика студентов</span>
+                    </div>
+                    <div id="stats-content">
+                        <!-- Статистика будет загружена через JS -->
+                    </div>
+                </div>
+                <div class="chat" id="coursescreate" style="display: none;">
+                    <div class="courses-title">
+                        <h1 id="formTitle">Творите!</h1>
+                    </div>
+                    <div class="courses-name">
+                        <div class="name-item">
+                            <span>Название курса</span>
+                            <input type="text" id="name">
+                        </div>
+                        <div class="name-item">
+                            <span>Описание</span>
+                            <textarea id="descr" rows="4"></textarea>
+                        </div>
+                        <div class="name-itemb">
+                            <button type="button" id="saveCourse">Сохранить</button>
+                            <button type="button" id="cancelEdit">Отмена</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./scripts/api.js"></script>
+    <script src="./scripts/prepod.js"></script>
+</body>
+</html>

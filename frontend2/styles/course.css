@@ -1,0 +1,299 @@
+.tab-content {
+    display: none;
+    width: 100%;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.tab-link {
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.tab-link.active {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 2px solid #eee;
+}
+
+.title button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.title button:hover {
+    background: #0056b3;
+}
+
+/* Стили для списков */
+#materials-list, #assignments-list {
+    padding: 20px;
+}
+
+.material-item, .assignment-item {
+    background: white;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.material-item h3, .assignment-item h3 {
+    margin: 0 0 10px 0;
+    color: #333;
+}
+
+.material-item p, .assignment-item p {
+    margin: 5px 0;
+    color: #666;
+}
+
+.item-actions {
+    margin-top: 10px;
+}
+
+.item-actions button {
+    background: #f0f0f0;
+    border: none;
+    padding: 8px 15px;
+    margin-right: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.item-actions button:hover {
+    background: #e0e0e0;
+}
+
+.item-actions button.primary {
+    background: #007bff;
+    color: white;
+}
+
+.item-actions button.primary:hover {
+    background: #0056b3;
+}
+
+.item-actions button.danger {
+    background: #dc3545;
+    color: white;
+}
+
+.item-actions button.danger:hover {
+    background: #c82333;
+}
+
+/* Модальные окна */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal.active {
+    display: block;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 10px;
+    width: 500px;
+    max-width: 90%;
+    position: relative;
+}
+
+.modal-content.large {
+    width: 800px;
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #000;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.modal-content input,
+.modal-content textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+.modal-content button[type="submit"] {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.modal-content button[type="submit"]:hover {
+    background: #0056b3;
+}
+
+/* Статистика */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.stat-card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.stat-card h3 {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    color: #666;
+    text-transform: uppercase;
+}
+
+.stat-card .stat-value {
+    font-size: 32px;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.students-table {
+    margin: 20px;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.students-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.students-table th,
+.students-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.students-table th {
+    background: #f8f9fa;
+    font-weight: bold;
+    color: #333;
+}
+
+.students-table tr:hover {
+    background: #f8f9fa;
+}
+
+/* Submissions */
+.submission-item {
+    background: white;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.submission-item h4 {
+    margin: 0 0 10px 0;
+    color: #333;
+}
+
+.submission-content {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 10px 0;
+    white-space: pre-wrap;
+}
+
+.grading-form {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 2px solid #eee;
+}
+
+.grading-form input,
+.grading-form textarea {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.grading-form button {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.grading-form button:hover {
+    background: #218838;
+}
+
+.grade-display {
+    background: #d4edda;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.grade-display strong {
+    color: #155724;
+}
