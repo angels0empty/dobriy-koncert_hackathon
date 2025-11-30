@@ -85,10 +85,19 @@ docker-compose exec backend python -m app.utils.seed_data
 - `DELETE /api/v1/courses/{id}` - Удалить курс
 - `POST /api/v1/courses/{id}/students/{student_id}` - Добавить студента
 
-### Задания
+### Курсы (студент)
+- `GET /courses/my-courses` - получить курсы студента
+
+### Задания (преподователь)
 - `POST /api/v1/assignments/courses/{course_id}/assignments` - Создать задание
 - `GET /api/v1/assignments/courses/{course_id}/assignments` - Список заданий
 - `GET /api/v1/assignments/{id}/submissions` - Получить сданные работы
+
+### Задания (студент)
+- `POST /assignments/{assignment_id}/submit` - сдать работу по заданию
+- `GET /assignments/my-assignments` - получить все задания студента
+- `GET /assignments/{assignment_id}/my-submission` - получить свою сданную работу
+
 
 ### Оценки
 - `POST /api/v1/grading/submissions/{id}/grade` - Выставить оценку

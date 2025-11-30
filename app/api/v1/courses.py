@@ -273,3 +273,18 @@ def get_all_students(
     """Получить список всех студентов"""
     students = db.query(User).filter(User.role == "student").all()
     return students
+
+@router.get("/my-courses", response_model=List[CourseResponse])
+def get_my_courses_as_student(
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    """Получить курсы на которых записан студент"""
+    courses = db.query(Course).join(
+        course_students,
+        course_students.c.course_id == Course.id
+    ).filter(
+        course_students.c.student_id == current_user.id
+    ).all()
+
+    return courses
