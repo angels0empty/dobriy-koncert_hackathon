@@ -26,16 +26,6 @@ document.getElementById('toggleMode').addEventListener('click', function(e) {
     hideError();
 });
 
-// Кнопка сброса
-let b = document.getElementById("b");
-b.onclick = function(e) {
-    e.preventDefault();
-    document.querySelector("input#login").value = "";
-    document.querySelector("input#password").value = "";
-    document.querySelector("input#fullname").value = "";
-    hideError();
-}
-
 // Кнопка входа/регистрации
 let loginBtn = document.getElementById("loginBtn");
 loginBtn.onclick = async function(e) {

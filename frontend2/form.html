@@ -16,27 +16,29 @@
             <div class="form-img">
                 <img src="./img/psb.png" alt="ПСБ">
             </div>
+            
             <div class="form-list">
                 <div class="list-item" id="fullname-field" style="display: none;">
-                    <span>Полное имя</span>
-                    <input type="text" id="fullname">
+                    <label for="fullname">Полное имя</label>
+                    <input type="text" id="fullname" placeholder="Введите ваше имя">
                 </div>
                 <div class="list-item">
-                    <span>Email</span>
-                    <input type="text" id="login">
+                    <label for="login">Email</label>
+                    <input type="email" id="login" placeholder="example@email.com">
                 </div>
                 <div class="list-item">
-                    <span>Пароль</span>
-                    <input type="password" id="password">
+                    <label for="password">Пароль</label>
+                    <input type="password" id="password" placeholder="Введите пароль">
                 </div>
-                <div class="error-message" id="error-message" style="color: red; display: none; margin-top: 10px;"></div>
+                <div class="error-message" id="error-message"></div>
             </div>
+            
             <div class="form-buttons">
-                <button class="get" type="submit" id="loginBtn">Войти</button>
-                <button class="del" type="reset" value="Reset the form" id="b">Сброс</button>
+                <button class="btn-primary" type="submit" id="loginBtn">Войти</button>
             </div>
-            <div style="text-align: center; margin-top: 15px;">
-                <a href="#" id="toggleMode" style="color: #007bff; text-decoration: none; font-size: 14px;">Нет аккаунта? Зарегистрироваться</a>
+            
+            <div class="form-footer">
+                <a href="#" id="toggleMode" class="toggle-link">Нет аккаунта? Зарегистрироваться</a>
             </div>
         </div>
     </div>

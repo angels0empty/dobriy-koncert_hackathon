@@ -1,110 +1,187 @@
-body{
-    background: linear-gradient(to top, rgb(24, 84, 215), rgb(55, 113, 238),  rgb(248, 175, 38));
-    height: 100dvh;
-    width: 100dvw;
-    display: inline-block;
-    overflow-x: hidden;
-}
-.container{
-    min-height: 100%;
-    min-width: 100%;
-    padding: 30px;
+body {
+    background: linear-gradient(135deg, rgb(24, 84, 215), rgb(55, 113, 238), rgb(248, 175, 38));
+    min-height: 100vh;
+    width: 100%;
     display: flex;
     align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
 }
 
-.form{
-    margin: 0px auto;
-    background-color: #fff;
-    max-width: 400px;
-    min-height: 600px;
-    height: 100%;
+.container {
     width: 100%;
-    padding: 0px 40px 30px 40px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form {
+    background-color: #fff;
+    max-width: 420px;
+    width: 100%;
+    padding: 45px 40px;
     display: flex;
     flex-direction: column;
-    justify-content:space-evenly;
-    border-radius: 1em;
-    box-shadow: 0px 0px 10px #ffffff;
+    gap: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
 }
-.form *{
 
-}
-.form:last-child{
-    margin-bottom: 0px;
-}
-.form-img{
-    margin-bottom: 0px;
-    
-}
-.form-list{
-    margin-bottom: 30px;
-}
-.list-item{
-    margin-bottom: 20px;
-}
-.list-item span{
-    display: block;
-    text-transform: uppercase;
-    font-family: "Roboto Condensed", sans-serif;
-    font-optical-sizing: auto;
-    font-style: normal;
-    color: #000;
+.form-img {
+    text-align: center;
     margin-bottom: 10px;
-    padding-left: 5px;
+}
 
+.form-img img {
+    max-width: 180px;
+    height: auto;
 }
-.list-item input{
-    border: 1.5px solid rgb(24, 84, 215);
-    border-radius: 2em;
-    padding: 15px;
-    width: 100%;
-    background-color: #e7efff;
-    font-family: "Roboto Condensed", sans-serif;
-    font-optical-sizing: auto;
-    font-style: normal;
-}
-.list-item input:hover{
-    transition-duration: 0.2s;
-    background-color: #eef4ff;
-    box-shadow: 0px 0px 1px #000;
-}
-.form-buttons{
+
+.form-list {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 20px;
 }
-.form-buttons button{
-    border-radius: 2em;
-    padding: 15px 50px;
+
+.list-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.list-item label {
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #333;
+    padding-left: 5px;
+}
+
+.list-item input {
+    border: 2px solid #e0e7ff;
+    border-radius: 12px;
+    padding: 14px 18px;
+    width: 100%;
+    background-color: #f8faff;
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 15px;
+    color: #333;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.list-item input::placeholder {
+    color: #999;
+    opacity: 0.7;
+}
+
+.list-item input:focus {
+    outline: none;
+    border-color: rgb(24, 84, 215);
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(24, 84, 215, 0.1);
+}
+
+.list-item input:hover {
+    border-color: rgb(55, 113, 238);
+    background-color: #fff;
+}
+
+.error-message {
+    color: #dc3545;
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #ffe6e6;
+    display: none;
+    margin-top: 5px;
+}
+
+.error-message:not(:empty) {
+    display: block;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.form-buttons button {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 12px;
+    padding: 16px 40px;
     text-transform: uppercase;
     font-family: "Roboto Condensed", sans-serif;
-    font-optical-sizing: auto;
-    font-style: normal;
-    letter-spacing: 1px;
-    transition-duration: 0.4s;
-    transition-timing-function: ease-in-out;
-}   
-.get{
-    background-color: rgb(24, 84, 215);
-    border: 1px solid rgb(24, 84, 215);
-    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
 }
-.get:hover{
+
+.btn-primary {
+    background: linear-gradient(135deg, rgb(24, 84, 215), rgb(55, 113, 238));
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(24, 84, 215, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(24, 84, 215, 0.4);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(24, 84, 215, 0.3);
+}
+
+.form-footer {
+    text-align: center;
+    padding-top: 10px;
+}
+
+.toggle-link {
     color: rgb(24, 84, 215);
-    background-color: #fff;
-    box-shadow: inset 0px 0px 2px rgb(24, 84, 215);
+    text-decoration: none;
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: inline-block;
 }
-.del{
-    border: 1px solid #000;
-    color: #000;
-    background-color: #fff;
+
+.toggle-link:hover {
+    color: rgb(55, 113, 238);
+    text-decoration: underline;
 }
-.del:hover{
-    color: #fff;
-    background-color: rgb(248, 175, 38);
-    border: 1px solid rgb(248, 175, 38);
-}
-.form-buttons a:hover:visited{
-    color: #0e6617;
+
+/* Responsive design */
+@media (max-width: 480px) {
+    .form {
+        padding: 35px 25px;
+        max-width: 100%;
+    }
+    
+    .form-img img {
+        max-width: 150px;
+    }
+    
+    .list-item input {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+    
+    .form-buttons button {
+        padding: 14px 30px;
+        font-size: 15px;
+    }
 }

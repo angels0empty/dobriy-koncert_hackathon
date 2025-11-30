@@ -9,6 +9,7 @@ let currentUser = null;
 async function init() {
     try {
         currentUser = await api.getCurrentUser();
+        document.getElementById('userName').textContent = currentUser.full_name || currentUser.email;
         await loadCourses();
     } catch (error) {
         console.error('Ошибка инициализации:', error);
@@ -37,9 +38,9 @@ function renderCourses(courses) {
     }
 
     const images = [
-        './img/free-icon-it-specialist-17725818.png',
-        './img/free-icon-chat-5320896.png',
-        './img/free-icon-piggy-bank-251676.png'
+        './img/course-1.svg',
+        './img/course-2.svg',
+        './img/course-3.svg'
     ];
 
     coursesList.innerHTML = courses.map((course, index) => `
@@ -53,9 +54,18 @@ function renderCourses(courses) {
                     <span>${course.description || 'Описание отсутствует'}</span>
                 </div>
                 <div class="item-nav">
-                    <button onclick="openCourse('${course.id}')">Открыть</button>
-                    <button onclick="editCourse('${course.id}')">Редактировать</button>
-                    <button onclick="deleteCourse('${course.id}')">Удалить</button>
+                    <button onclick="openCourse('${course.id}')">
+                        <img src="./img/open.svg" alt="" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 4px;">
+                        Открыть
+                    </button>
+                    <button onclick="editCourse('${course.id}')">
+                        <img src="./img/edit.svg" alt="" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 4px;">
+                        Редактировать
+                    </button>
+                    <button onclick="deleteCourse('${course.id}')">
+                        <img src="./img/delete.svg" alt="" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 4px;">
+                        Удалить
+                    </button>
                 </div>
             </div>
         </div>

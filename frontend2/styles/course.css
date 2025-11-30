@@ -1,104 +1,186 @@
+/* ==================== ВКЛАДКИ ==================== */
 .tab-content {
     display: none;
     width: 100%;
+    animation: fadeIn 0.3s ease-in;
 }
 
 .tab-content.active {
     display: block;
 }
 
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .tab-link {
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.tab-link:hover {
+    background-color: #f0f5ff;
+    color: rgb(24, 84, 215);
+    transform: translateX(5px);
 }
 
 .tab-link.active {
-    font-weight: bold;
-    color: #007bff;
+    background: linear-gradient(135deg, rgba(24, 84, 215, 0.1), rgba(55, 113, 238, 0.1));
+    color: rgb(24, 84, 215);
+    font-weight: 600;
+    border-left: 4px solid rgb(24, 84, 215);
 }
 
+/* ==================== ЗАГОЛОВКИ СЕКЦИЙ ==================== */
 .title {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    border-bottom: 2px solid #eee;
+    padding: 25px;
+    border-bottom: none;
+    background: linear-gradient(135deg, #f8faff, #e8f1ff);
+    border-radius: 12px;
+    margin-bottom: 25px;
+    border-left: 5px solid rgb(24, 84, 215);
 }
 
-.title button {
-    background: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-.title button:hover {
-    background: #0056b3;
-}
-
-/* Стили для списков */
-#materials-list, #assignments-list {
-    padding: 20px;
-}
-
-.material-item, .assignment-item {
-    background: white;
-    padding: 20px;
-    margin-bottom: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.material-item h3, .assignment-item h3 {
-    margin: 0 0 10px 0;
+.title span {
+    font-size: 24px;
+    font-weight: 700;
     color: #333;
 }
 
-.material-item p, .assignment-item p {
-    margin: 5px 0;
-    color: #666;
+.title button {
+    background: linear-gradient(135deg, rgb(24, 84, 215), rgb(55, 113, 238));
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(24, 84, 215, 0.3);
 }
 
+.title button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(24, 84, 215, 0.4);
+}
+
+.title button:active {
+    transform: translateY(0);
+}
+
+/* ==================== СПИСКИ МАТЕРИАЛОВ И ЗАДАНИЙ ==================== */
+#materials-list, 
+#assignments-list,
+#students-list {
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.material-item, 
+.assignment-item {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border: 2px solid #f0f5ff;
+    transition: all 0.3s ease;
+}
+
+.material-item:hover, 
+.assignment-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(24, 84, 215, 0.12);
+    border-color: rgb(24, 84, 215);
+}
+
+.material-item h3, 
+.assignment-item h3 {
+    margin: 0 0 12px 0;
+    color: #333;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.material-item p, 
+.assignment-item p {
+    margin: 8px 0;
+    color: #666;
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+.material-item strong,
+.assignment-item strong {
+    color: #333;
+    font-weight: 600;
+}
+
+/* ==================== ДЕЙСТВИЯ С ЭЛЕМЕНТАМИ ==================== */
 .item-actions {
-    margin-top: 10px;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 2px solid #f0f5ff;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 .item-actions button {
-    background: #f0f0f0;
+    background: #f5f5f5;
     border: none;
-    padding: 8px 15px;
-    margin-right: 5px;
-    border-radius: 4px;
+    padding: 10px 18px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 13px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
 }
 
 .item-actions button:hover {
-    background: #e0e0e0;
+    background: #e5e5e5;
+    transform: translateY(-1px);
 }
 
 .item-actions button.primary {
-    background: #007bff;
+    background: linear-gradient(135deg, rgb(24, 84, 215), rgb(55, 113, 238));
     color: white;
+    box-shadow: 0 2px 8px rgba(24, 84, 215, 0.3);
 }
 
 .item-actions button.primary:hover {
-    background: #0056b3;
+    box-shadow: 0 4px 12px rgba(24, 84, 215, 0.4);
 }
 
 .item-actions button.danger {
-    background: #dc3545;
+    background: linear-gradient(135deg, #dc3545, #c82333);
     color: white;
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
 }
 
 .item-actions button.danger:hover {
-    background: #c82333;
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
 }
 
-/* Модальные окна */
+/* ==================== МОДАЛЬНЫЕ ОКНА ==================== */
 .modal {
     display: none;
     position: fixed;
@@ -107,111 +189,179 @@
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s ease;
 }
 
 .modal.active {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .modal-content {
     background-color: white;
-    margin: 5% auto;
-    padding: 30px;
-    border-radius: 10px;
-    width: 500px;
+    padding: 35px;
+    border-radius: 16px;
+    width: 520px;
     max-width: 90%;
     position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .modal-content.large {
-    width: 800px;
+    width: 850px;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 .close {
     position: absolute;
     right: 20px;
     top: 15px;
-    font-size: 28px;
+    font-size: 32px;
     font-weight: bold;
     color: #aaa;
     cursor: pointer;
+    transition: all 0.3s ease;
+    line-height: 1;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
 }
 
 .close:hover {
-    color: #000;
+    color: #333;
+    background-color: #f0f0f0;
+    transform: rotate(90deg);
 }
 
 .modal-content h2 {
     margin-top: 0;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     color: #333;
+    font-size: 24px;
+    font-weight: 700;
 }
 
 .modal-content form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 18px;
 }
 
 .modal-content input,
 .modal-content textarea {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 14px;
+    padding: 14px 16px;
+    border: 2px solid #e0e7ff;
+    border-radius: 10px;
+    font-size: 15px;
     font-family: inherit;
+    transition: all 0.3s ease;
+    background-color: #fff;
+}
+
+.modal-content input:focus,
+.modal-content textarea:focus {
+    outline: none;
+    border-color: rgb(24, 84, 215);
+    box-shadow: 0 0 0 3px rgba(24, 84, 215, 0.1);
+}
+
+.modal-content textarea {
+    resize: vertical;
+    min-height: 100px;
 }
 
 .modal-content button[type="submit"] {
-    background: #007bff;
+    background: linear-gradient(135deg, rgb(24, 84, 215), rgb(55, 113, 238));
     color: white;
     border: none;
-    padding: 12px;
-    border-radius: 5px;
+    padding: 14px;
+    border-radius: 10px;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(24, 84, 215, 0.3);
+    margin-top: 10px;
 }
 
 .modal-content button[type="submit"]:hover {
-    background: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(24, 84, 215, 0.4);
 }
 
-/* Статистика */
+.modal-content button[type="submit"]:active {
+    transform: translateY(0);
+}
+
+/* ==================== СТАТИСТИКА ==================== */
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 20px;
-    padding: 20px;
+    padding: 20px 0;
 }
 
 .stat-card {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background: linear-gradient(135deg, #f8faff, #ffffff);
+    padding: 28px;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     text-align: center;
+    border: 2px solid #e8f1ff;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(24, 84, 215, 0.15);
+    border-color: rgb(24, 84, 215);
 }
 
 .stat-card h3 {
-    margin: 0 0 10px 0;
-    font-size: 14px;
+    margin: 0 0 15px 0;
+    font-size: 13px;
     color: #666;
     text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
 }
 
 .stat-card .stat-value {
-    font-size: 32px;
-    font-weight: bold;
-    color: #007bff;
+    font-size: 36px;
+    font-weight: 700;
+    background: linear-gradient(135deg, rgb(24, 84, 215), rgb(55, 113, 238));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
+/* ==================== ТАБЛИЦА СТУДЕНТОВ ==================== */
 .students-table {
-    margin: 20px;
+    margin: 20px 0;
     background: white;
-    border-radius: 8px;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 2px solid #f0f5ff;
 }
 
 .students-table table {
@@ -221,79 +371,154 @@
 
 .students-table th,
 .students-table td {
-    padding: 12px;
+    padding: 16px 20px;
     text-align: left;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #f0f5ff;
 }
 
 .students-table th {
-    background: #f8f9fa;
-    font-weight: bold;
+    background: linear-gradient(135deg, #f8faff, #e8f1ff);
+    font-weight: 600;
     color: #333;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+}
+
+.students-table td {
+    color: #555;
+    font-size: 15px;
+}
+
+.students-table tr:last-child td {
+    border-bottom: none;
 }
 
 .students-table tr:hover {
-    background: #f8f9fa;
+    background: #f8faff;
 }
 
-/* Submissions */
+/* ==================== РАБОТЫ СТУДЕНТОВ ==================== */
 .submission-item {
     background: white;
-    padding: 20px;
-    margin-bottom: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border: 2px solid #f0f5ff;
+    transition: all 0.3s ease;
+}
+
+.submission-item:hover {
+    box-shadow: 0 6px 16px rgba(24, 84, 215, 0.12);
+    border-color: rgb(24, 84, 215);
 }
 
 .submission-item h4 {
-    margin: 0 0 10px 0;
+    margin: 0 0 15px 0;
     color: #333;
+    font-size: 18px;
+    font-weight: 600;
 }
 
 .submission-content {
-    background: #f8f9fa;
-    padding: 15px;
-    border-radius: 5px;
-    margin: 10px 0;
+    background: #f8faff;
+    padding: 18px;
+    border-radius: 10px;
+    margin: 15px 0;
     white-space: pre-wrap;
+    border-left: 4px solid rgb(24, 84, 215);
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.6;
 }
 
 .grading-form {
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 2px solid #eee;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid #f0f5ff;
 }
 
 .grading-form input,
 .grading-form textarea {
     width: 100%;
-    padding: 8px;
-    margin: 5px 0;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    padding: 12px 16px;
+    margin: 8px 0;
+    border: 2px solid #e0e7ff;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.grading-form input:focus,
+.grading-form textarea:focus {
+    outline: none;
+    border-color: rgb(24, 84, 215);
+    box-shadow: 0 0 0 3px rgba(24, 84, 215, 0.1);
 }
 
 .grading-form button {
-    background: #28a745;
+    background: linear-gradient(135deg, #28a745, #20c997);
     color: white;
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 12px 24px;
+    border-radius: 10px;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
 }
 
 .grading-form button:hover {
-    background: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(40, 167, 69, 0.4);
+}
+
+.grading-form button:active {
+    transform: translateY(0);
 }
 
 .grade-display {
-    background: #d4edda;
-    padding: 10px;
-    border-radius: 5px;
-    margin-top: 10px;
+    background: linear-gradient(135deg, #d4edda, #c3e6cb);
+    padding: 16px;
+    border-radius: 10px;
+    margin-top: 15px;
+    border-left: 4px solid #28a745;
 }
 
 .grade-display strong {
     color: #155724;
+    font-size: 16px;
+}
+
+/* ==================== АДАПТИВНОСТЬ ==================== */
+@media (max-width: 768px) {
+    .title {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+    
+    .title button {
+        width: 100%;
+    }
+    
+    .item-actions {
+        flex-direction: column;
+    }
+    
+    .item-actions button {
+        width: 100%;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .students-table {
+        overflow-x: auto;
+    }
 }
