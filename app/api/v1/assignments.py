@@ -21,6 +21,106 @@ from app.utils.dependencies import get_current_user, get_current_teacher
 
 router = APIRouter(prefix="/assignments", tags=["assignments"])
 
+# == ДЛЯ СТУДЕНТОВ == 
+
+@router.post("/{assignment_id}/submit", response_model=SubmissionResponse)
+def submit_assignment(
+    assignment_id: UUID,
+    submission_data: SubmissionCreate,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    """Сдать работу по заданию (только для студентов)"""
+    assignment = db.query(Assignment).filter(Assignment.id == assignment_id).first()
+    if not assignment:
+        raise HTTPException(status_code=404, detail="Assignment not found")
+
+    enrolled = db.query(course_students).filter(
+        course_students.c.course_id == assignment.course_id,
+        course_students.c.student_id == current_user.id
+    ).first()
+
+    if not enrolled:
+        raise HTTPException(status_code=403, detail="You are not enrolled in this course")
+
+    # работа не сдана
+    existing_submission = db.query(Submission).filter(
+        Submission.assignment_id == assignment_id,
+        Submission.student_id == current_user.id
+    ).first()
+
+    if existing_submission:
+        raise HTTPException(status_code=400, detail="You have already submitted this assignment")
+
+    # create submission
+    new_submission = Submission(
+        assignment_id=assignment_id,
+        student_id=current_user.id,
+        content=submission_data.content,
+        file_url=submission_data.file_url,
+        status="pending"
+    )
+
+    db.add(new_submission)
+    db.commit()
+    db.refresh(new_submission)
+
+    return new_submission
+
+
+@router.get("/my-assignments", response_model=List[AssignmentResponse])
+def get_my_assignments(
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    """Получить все задания на курсах, на которых записан студент"""
+    # курсы студента
+    enrolled_courses = db.query(course_students.c.course_id).filter(
+        course_students.c.student_id == current_user.id
+    ).all()
+
+    course_ids = [course_id for (course_id,) in enrolled_courses]
+
+    if not course_ids:
+        return []
+
+    # задания со всех его курсов
+    assignments = db.query(Assignment).filter(
+        Assignment.course_id.in_(course_ids)
+    ).all()
+
+    return assignments
+
+
+@router.get("/{assignment_id}/my-submission", response_model=SubmissionResponse)
+def get_my_submission(
+    assignment_id: UUID,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    """Получить свою сданную работу по заданию"""
+    assignment = db.query(Assignment).filter(Assignment.id == assignment_id).first()
+    if not assignment:
+        raise HTTPException(status_code=404, detail="Assignment not found")
+
+    enrolled = db.query(course_students).filter(
+        course_students.c.course_id == assignment.course_id,
+        course_students.c.student_id == current_user.id
+    ).first()
+
+    if not enrolled:
+        raise HTTPException(status_code=403, detail="You are not enrolled in this course")
+
+    submission = db.query(Submission).filter(
+        Submission.assignment_id == assignment_id,
+        Submission.student_id == current_user.id
+    ).first()
+
+    if not submission:
+        raise HTTPException(status_code=404, detail="Submission not found")
+
+    return submission
+
 
 @router.post("/courses/{course_id}/assignments", response_model=AssignmentResponse)
 def create_assignment(
@@ -185,104 +285,3 @@ def get_assignment_submissions(
         })
 
     return result
-
-
-# == ДЛЯ СТУДЕНТОВ == 
-
-@router.post("/{assignment_id}/submit", response_model=SubmissionResponse)
-def submit_assignment(
-    assignment_id: UUID,
-    submission_data: SubmissionCreate,
-    current_user: User = Depends(get_current_user),
-    db: Session = Depends(get_db)
-):
-    """Сдать работу по заданию (только для студентов)"""
-    assignment = db.query(Assignment).filter(Assignment.id == assignment_id).first()
-    if not assignment:
-        raise HTTPException(status_code=404, detail="Assignment not found")
-
-    enrolled = db.query(course_students).filter(
-        course_students.c.course_id == assignment.course_id,
-        course_students.c.student_id == current_user.id
-    ).first()
-
-    if not enrolled:
-        raise HTTPException(status_code=403, detail="You are not enrolled in this course")
-
-    # работа не сдана
-    existing_submission = db.query(Submission).filter(
-        Submission.assignment_id == assignment_id,
-        Submission.student_id == current_user.id
-    ).first()
-
-    if existing_submission:
-        raise HTTPException(status_code=400, detail="You have already submitted this assignment")
-
-    # create submission
-    new_submission = Submission(
-        assignment_id=assignment_id,
-        student_id=current_user.id,
-        content=submission_data.content,
-        file_url=submission_data.file_url,
-        status="submitted"
-    )
-
-    db.add(new_submission)
-    db.commit()
-    db.refresh(new_submission)
-
-    return new_submission
-
-
-@router.get("/my-assignments", response_model=List[AssignmentResponse])
-def get_my_assignments(
-    current_user: User = Depends(get_current_user),
-    db: Session = Depends(get_db)
-):
-    """Получить все задания на курсах, на которых записан студент"""
-    # курсы студента
-    enrolled_courses = db.query(course_students.c.course_id).filter(
-        course_students.c.student_id == current_user.id
-    ).all()
-
-    course_ids = [course_id for (course_id,) in enrolled_courses]
-
-    if not course_ids:
-        return []
-
-    # задания со всех его курсов
-    assignments = db.query(Assignment).filter(
-        Assignment.course_id.in_(course_ids)
-    ).all()
-
-    return assignments
-
-
-@router.get("/{assignment_id}/my-submission", response_model=SubmissionResponse)
-def get_my_submission(
-    assignment_id: UUID,
-    current_user: User = Depends(get_current_user),
-    db: Session = Depends(get_db)
-):
-    """Получить свою сданную работу по заданию"""
-    assignment = db.query(Assignment).filter(Assignment.id == assignment_id).first()
-    if not assignment:
-        raise HTTPException(status_code=404, detail="Assignment not found")
-
-    enrolled = db.query(course_students).filter(
-        course_students.c.course_id == assignment.course_id,
-        course_students.c.student_id == current_user.id
-    ).first()
-
-    if not enrolled:
-        raise HTTPException(status_code=403, detail="You are not enrolled in this course")
-
-    submission = db.query(Submission).filter(
-        Submission.assignment_id == assignment_id,
-        Submission.student_id == current_user.id
-    ).first()
-
-    if not submission:
-        raise HTTPException(status_code=404, detail="Submission not found")
-
-    return submission
